@@ -3,7 +3,7 @@
 # Integrantes do Grupo:
 - Gustavo Carneiro  
 - Thiago Vinnícius 
-- Júlio Vilas Bôas
+- Júlio César Aragão Vilas Bôas
 -
 -
 -
