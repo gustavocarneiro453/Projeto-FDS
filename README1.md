@@ -20,10 +20,14 @@ O **Nome não definido (Reciclagem)** é uma plataforma web desenvolvida com Dja
   - *Feedback sobre Impacto:* A plataforma mostra o impacto positivo da reciclagem feita pelo usuário, como a quantidade de CO2 evitada ou materiais reaproveitados.
 
 ## Público-alvo
-(adicionar)
+A plataforma é destinada a consumidores conscientes que desejam contribuir para um meio ambiente mais limpo e sustentável, bem como a centros de reciclagem que buscam ampliar seu alcance e eficiência operacional.
 
 ## Problema e Impacto
-(adicionar)
+
+Impacto esperado:
+- Redução do Descarte Inadequado: Incentivar a destinação correta de materiais, reduzindo a quantidade de resíduos em aterros sanitários.
+- Aumento da Conscientização: Educar o público sobre a importância da reciclagem e consumo responsável.
+- Contribuição para a Economia Circular: Facilitar o reaproveitamento de materiais e apoiar práticas de economia circular.
 
 ## Diferenciais
 (adicionar)
