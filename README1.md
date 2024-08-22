@@ -14,7 +14,6 @@ O **Nome não definido (Reciclagem)** é uma plataforma web desenvolvida com Dja
  
 - **Dicas e Informações sobre Reciclagem:**
   - *Conteúdo Educacional:* A plataforma oferece artigos, vídeos e tutoriais sobre reciclagem, como separar corretamente os materiais e o impacto ambiental do descarte inadequado.
-  - *Quiz Interativo (opcional):* Ferramentas para testar o conhecimento do usuário sobre reciclagem e promover hábitos mais sustentáveis.
 
 - **Rastreamento do Ciclo de Vida dos Produtos:**
   - *Histórico do Produto:* Permite que o usuário acompanhe o ciclo de vida dos produtos reciclados, desde o descarte até o reaproveitamento ou processamento final.
