@@ -12,11 +12,11 @@ O **Nome não definido (Reciclagem)** é uma plataforma web desenvolvida com Dja
   - *Integração com Serviços de Coleta:* Usuários podem agendar a coleta de materiais recicláveis diretamente pela plataforma.  
   - *Notificações (opcional):* Lembretes automáticos sobre datas de coleta e instruções específicas para o preparo dos materiais.
  
-**Dicas e Informações sobre Reciclagem:**
+- **Dicas e Informações sobre Reciclagem:**
   - *Conteúdo Educacional:* A plataforma oferece artigos, vídeos e tutoriais sobre reciclagem, como separar corretamente os materiais e o impacto ambiental do descarte inadequado.
   - *Quiz Interativo (opcional):* Ferramentas para testar o conhecimento do usuário sobre reciclagem e promover hábitos mais sustentáveis.
 
-**Rastreamento do Ciclo de Vida dos Produtos:**
+- **Rastreamento do Ciclo de Vida dos Produtos:**
   - *Histórico do Produto:* Permite que o usuário acompanhe o ciclo de vida dos produtos reciclados, desde o descarte até o reaproveitamento ou processamento final.
   - *Feedback sobre Impacto:* A plataforma mostra o impacto positivo da reciclagem feita pelo usuário, como a quantidade de CO2 evitada ou materiais reaproveitados.
 
@@ -27,4 +27,7 @@ O **Nome não definido (Reciclagem)** é uma plataforma web desenvolvida com Dja
 (adicionar)
 
 ## Diferenciais
+(adicionar)
+
+## Equipe
 (adicionar)
