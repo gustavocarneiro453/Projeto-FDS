@@ -23,10 +23,11 @@ O **Nome não definido (Reciclagem)** é uma plataforma web desenvolvida com Dja
 A plataforma é destinada a consumidores conscientes que desejam contribuir para um meio ambiente mais limpo e sustentável, bem como a centros de reciclagem que buscam ampliar seu alcance e eficiência operacional.
 
 ## Problema e Impacto
-Problema: 
+**Problema:** 
+
 A crescente produção de resíduos e o descarte inadequado de materiais representam sérios desafios para o meio ambiente, contribuindo para a poluição e a degradação dos ecossistemas. Apesar da importância da reciclagem para a sustentabilidade, ainda há uma significativa falta de conhecimento na população sobre como realizar o descarte correto. Grande parte da sociedade não sabe como separar os resíduos ou onde encontrar pontos de coleta seletiva, o que resulta em baixos índices de reciclagem. Esse cenário evidencia a necessidade de soluções que orientem a sociedade para práticas mais sustentáveis.
 
-Impacto esperado:
+**Impacto esperado:**
 - *Redução do Descarte Inadequado:* Incentivar a destinação correta de materiais, reduzindo a quantidade de resíduos em aterros sanitários.
 - *Aumento da Conscientização:* Educar o público sobre a importância da reciclagem e consumo responsável.
 - *Contribuição para a Economia Circular:* Facilitar o reaproveitamento de materiais e apoiar práticas de economia circular.
