@@ -23,6 +23,8 @@ O **Nome não definido (Reciclagem)** é uma plataforma web desenvolvida com Dja
 A plataforma é destinada a consumidores conscientes que desejam contribuir para um meio ambiente mais limpo e sustentável, bem como a centros de reciclagem que buscam ampliar seu alcance e eficiência operacional.
 
 ## Problema e Impacto
+Problema: 
+A crescente produção de resíduos e o descarte inadequado de materiais representam sérios desafios para o meio ambiente, contribuindo para a poluição e a degradação dos ecossistemas. Apesar da importância da reciclagem para a sustentabilidade, ainda há uma significativa falta de conhecimento na população sobre como realizar o descarte correto. Grande parte da sociedade não sabe como separar os resíduos ou onde encontrar pontos de coleta seletiva, o que resulta em baixos índices de reciclagem. Esse cenário evidencia a necessidade de soluções que orientem a sociedade para práticas mais sustentáveis.
 
 Impacto esperado:
 - *Redução do Descarte Inadequado:* Incentivar a destinação correta de materiais, reduzindo a quantidade de resíduos em aterros sanitários.
@@ -33,7 +35,8 @@ Impacto esperado:
 - *Foco em Eletrônicos:* Especialização em Reciclagem de Eletrônicos: Diferente de plataformas que tratam todos os materiais da mesma forma, essa plataforma se destaca por sua especialização em eletrônicos, um dos segmentos mais críticos e com maior impacto ambiental.
 - *Agendamento Simplificado:* Diferente de muitas plataformas que apenas informam sobre pontos de coleta, a sua solução integra a logística de coleta, permitindo que os usuários agendem a retirada de materiais diretamente pela plataforma.
 - *Feedback Personalizado:* Os usuários recebem relatórios sobre o impacto ambiental de suas contribuições, como a quantidade de CO2 evitada, reforçando a importância de suas ações.
-
+- *Integração de Práticas Sustentáveis:* Além de conectar consumidores a centros de reciclagem, a plataforma oferece conteúdo educacional sobre práticas sustentáveis, promovendo um impacto positivo no comportamento do usuário.
+- *Transparência Total:* A plataforma permite que os usuários acompanhem todo o ciclo de vida dos produtos reciclados, desde o descarte até o reaproveitamento ou reciclagem final, oferecendo uma visão clara e transparente do impacto de suas ações.
 
 
 ## Equipe
