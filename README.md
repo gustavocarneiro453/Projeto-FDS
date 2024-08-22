@@ -9,6 +9,8 @@ VolunTree é uma plataforma de voluntariado dedicada a conectar ONGs ambientais 
 - **Cadastro de Oportunidades e Gerenciamento**: ONGs podem cadastrar projetos detalhados, gerenciar o progresso dos voluntários, e os voluntários podem registrar suas horas e receber certificados.
 
 - **Busca e Filtro de Oportunidades**: Voluntários podem buscar oportunidades por localização, tipo de projeto, datas e requisitos.
+- 
+- **Geolocalização e API de Integração**: Integração com APIs de geolocalização, como Google Maps, para que voluntários encontrem oportunidades próximas. Possibilidade de integração com sistemas de pagamento para doações ou taxas de inscrição.
 
 ## Público-alvo
 
