@@ -10,8 +10,6 @@ VolunTree é uma plataforma de voluntariado dedicada a conectar ONGs ambientais 
 
 - **Busca e Filtro de Oportunidades**: Voluntários podem buscar oportunidades por localização, tipo de projeto, datas e requisitos.
 
-- **Certificados e Relatórios**: Emissão de certificados de participação e relatórios sobre o impacto das atividades voluntárias.
-
 ## Público-alvo
 
 - **ONGs Ambientais**: Organizações que necessitam de apoio voluntário para projetos de conservação da vida terrestre, como reflorestamento, monitoramento de fauna, e limpeza de áreas degradadas.
