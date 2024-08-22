@@ -25,12 +25,16 @@ A plataforma é destinada a consumidores conscientes que desejam contribuir para
 ## Problema e Impacto
 
 Impacto esperado:
-- Redução do Descarte Inadequado: Incentivar a destinação correta de materiais, reduzindo a quantidade de resíduos em aterros sanitários.
-- Aumento da Conscientização: Educar o público sobre a importância da reciclagem e consumo responsável.
-- Contribuição para a Economia Circular: Facilitar o reaproveitamento de materiais e apoiar práticas de economia circular.
+- *Redução do Descarte Inadequado:* Incentivar a destinação correta de materiais, reduzindo a quantidade de resíduos em aterros sanitários.
+- *Aumento da Conscientização:* Educar o público sobre a importância da reciclagem e consumo responsável.
+- *Contribuição para a Economia Circular:* Facilitar o reaproveitamento de materiais e apoiar práticas de economia circular.
 
 ## Diferenciais
-(adicionar)
+- *Foco em Eletrônicos:* Especialização em Reciclagem de Eletrônicos: Diferente de plataformas que tratam todos os materiais da mesma forma, essa plataforma se destaca por sua especialização em eletrônicos, um dos segmentos mais críticos e com maior impacto ambiental.
+- *Agendamento Simplificado:* Diferente de muitas plataformas que apenas informam sobre pontos de coleta, a sua solução integra a logística de coleta, permitindo que os usuários agendem a retirada de materiais diretamente pela plataforma.
+- *Feedback Personalizado:* Os usuários recebem relatórios sobre o impacto ambiental de suas contribuições, como a quantidade de CO2 evitada, reforçando a importância de suas ações.
+
+
 
 ## Equipe
 (adicionar)
