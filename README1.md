@@ -1,6 +1,6 @@
-# Nome não definido (Reciclagem)
+# EcoTrack
 
-O **Nome não definido (Reciclagem)** é uma plataforma web desenvolvida com Django, focada em promover práticas sustentáveis, facilitando a reciclagem de materiais, com ênfase em eletrônicos. A iniciativa alinha-se com o Objetivo de Desenvolvimento Sustentável 12 da ONU, que visa garantir padrões de consumo e produção responsáveis.
+O **EcoTrack** é uma plataforma web desenvolvida com Django, focada em promover práticas sustentáveis, facilitando a reciclagem de materiais, com ênfase em eletrônicos. A iniciativa alinha-se com o Objetivo de Desenvolvimento Sustentável 12 da ONU, que visa garantir padrões de consumo e produção responsáveis.
 
 ## Funcionalidades Principais
 
@@ -39,6 +39,10 @@ A crescente produção de resíduos e o descarte inadequado de materiais represe
 - *Integração de Práticas Sustentáveis:* Além de conectar consumidores a centros de reciclagem, a plataforma oferece conteúdo educacional sobre práticas sustentáveis, promovendo um impacto positivo no comportamento do usuário.
 - *Transparência Total:* A plataforma permite que os usuários acompanhem todo o ciclo de vida dos produtos reciclados, desde o descarte até o reaproveitamento ou reciclagem final, oferecendo uma visão clara e transparente do impacto de suas ações.
 
-
 ## Equipe
-(adicionar)
+- Gustavo Carneiro  
+- Thiago Vinnícius 
+- Júlio César Aragão Vilas Bôas
+- Aline Farias Amancio
+- Beatriz Victória Costa Pinto
+- Nina Henrique França Fernandes Bento De Sá
