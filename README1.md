@@ -40,9 +40,9 @@ A crescente produção de resíduos e o descarte inadequado de materiais represe
 - *Transparência Total:* A plataforma permite que os usuários acompanhem todo o ciclo de vida dos produtos reciclados, desde o descarte até o reaproveitamento ou reciclagem final, oferecendo uma visão clara e transparente do impacto de suas ações.
 
 ## Equipe
-- Gustavo Carneiro  
-- Thiago Vinnícius 
-- Júlio César Aragão Vilas Bôas
 - Aline Farias Amancio
 - Beatriz Victória Costa Pinto
+- Gustavo Carneiro  
+- Júlio César Aragão Vilas Bôas
 - Nina Henrique França Fernandes Bento De Sá
+- Thiago Vinnícius 
