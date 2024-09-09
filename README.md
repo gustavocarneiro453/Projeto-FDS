@@ -55,3 +55,11 @@ A crescente produção de resíduos e o descarte inadequado de materiais represe
 - Júlio César Aragão Vilas Bôas
 - Nina Henrique França Fernandes Bento De Sá
 - Thiago Vinnícius 
+
+## Entrega 1
+- **Histórias bem definidas**
+  - [Documento com histórias](https://docs.google.com/document/d/1KLpmdgkq_9-2uOrfhZg1mmdmRydcJOLx7CMLJBF2K6E/edit)
+  - [Print do quadro e backlog (JIRA)](https://drive.google.com/drive/folders/1t9b92eNcpkprk3ZxcNwfN6mRaRZ6Tez-?usp=sharing)
+- **Criação de protótipos de Lo-Fi (Figma)**
+  - [Sketches e storyboards para as histórias](https://drive.google.com/drive/folders/1nrq_3Om4j-VEjCTsaizrlyV1LYpNBh6G?usp=sharing)
+  - [Screencast apresentando protótipo](https://youtu.be/_2p9OX2M8c4)
