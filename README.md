@@ -61,5 +61,5 @@ A crescente produção de resíduos e o descarte inadequado de materiais represe
   - [Documento com histórias](https://docs.google.com/document/d/1KLpmdgkq_9-2uOrfhZg1mmdmRydcJOLx7CMLJBF2K6E/edit)
   - [Print do quadro e backlog (JIRA)](https://drive.google.com/drive/folders/1t9b92eNcpkprk3ZxcNwfN6mRaRZ6Tez-?usp=sharing)
 - **Criação de protótipos de Lo-Fi (Figma)**
-  - [Sketches e storyboards para as histórias](https://drive.google.com/drive/folders/1nrq_3Om4j-VEjCTsaizrlyV1LYpNBh6G?usp=sharing)
+  - [Sketches e storyboards para as histórias](https://drive.google.com/drive/folders/1nrq_3Om4j-VEjCTsaizrlyV1LYpNBh6G?usp=sharing) | [Figma](https://www.figma.com/design/GZIwTY0R01e2LLRgEx0dhD/EcoTrack-(Copy)?node-id=2-843&t=Zj9UyQcf8VQxUv3y-1)
   - [Screencast apresentando protótipo](https://youtu.be/_2p9OX2M8c4)
