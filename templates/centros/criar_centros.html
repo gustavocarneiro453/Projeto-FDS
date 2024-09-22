@@ -1,0 +1,49 @@
+<!-- centros/templates/centros/criar_centros.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Cadastrar Ponto de Coleta{% endblock %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h2 class="mb-4">Cadastrar Ponto de Coleta</h2>
+      <form method="post" novalidate>
+        {% csrf_token %}
+        
+        <!-- Exibição de Erros Não Relacionados a Campos Específicos -->
+        {% if form.non_field_errors %}
+          <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+              <p>{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+        
+        <!-- Iteração sobre os Campos do Formulário -->
+        {% for field in form %}
+          <div class="form-group">
+            <!-- Rótulo do Campo -->
+            {{ field.label_tag }}
+            
+            <!-- Campo do Formulário com Classes do Bootstrap -->
+            {{ field|add_class:"form-control" }}
+            
+            <!-- Exibição de Erros Específicos do Campo -->
+            {% if field.errors %}
+              <div class="text-danger">
+                {% for error in field.errors %}
+                  <small>{{ error }}</small>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+        
+        <!-- Botão de Submissão -->
+        <button type="submit" class="btn btn-success">Cadastrar</button>
+        <a href="{% url 'centros:list' %}" class="btn btn-secondary">Cancelar</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}

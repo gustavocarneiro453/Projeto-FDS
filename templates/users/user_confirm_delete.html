@@ -1,0 +1,14 @@
+<!-- users/templates/users/user_confirm_delete.html -->
+
+{% extends "base.html" %}
+{% block title %}Deletar Usuário{% endblock %}
+
+{% block content %}
+  <h2>Deletar Usuário</h2>
+  <p>Tem certeza que deseja deletar o usuário <strong>{{ user_obj.username }}</strong>?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirmar Deleção</button>
+    <a href="{% url 'user:listar_user' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+{% endblock %}

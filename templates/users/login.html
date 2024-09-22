@@ -1,0 +1,19 @@
+<!-- accounts/templates/accounts/login.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Login</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Entrar</button>
+</form>
+
+<h3>Não tem uma conta?</h3>
+<div>
+    <a href="{% url 'user:register' %}?type=company" class="btn btn-primary">Registrar como Empresa</a>
+    <a href="{% url 'user:register' %}?type=user" class="btn btn-secondary">Registrar como Usuário Comum</a>
+</div>
+{% endblock %}
+

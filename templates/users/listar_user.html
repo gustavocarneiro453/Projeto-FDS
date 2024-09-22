@@ -1,0 +1,41 @@
+<!-- users/templates/users/user_list.html -->
+
+{% extends "base.html" %}
+{% block title %}Lista de Usuários{% endblock %}
+
+{% block content %}
+  <h2>Lista de Usuários</h2>
+  <a href="{% url 'user:criar_user' %}" class="btn btn-primary mb-3">Criar Novo Usuário</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Tipo</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.nome }} {{ user.sobrenome }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            {% if user.is_company %}
+              Empresa
+            {% else %}
+              Usuário
+            {% endif %}
+          </td>
+          <td>
+            <a href="{% url 'user:user-detail' user.id %}" class="btn btn-info btn-sm">Detalhes</a>
+            <a href="{% url 'user:user-update' user.id %}" class="btn btn-warning btn-sm">Editar</a>
+            <a href="{% url 'user:user-delete' user.id %}" class="btn btn-danger btn-sm">Deletar</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
