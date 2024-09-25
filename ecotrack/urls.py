@@ -21,6 +21,6 @@ from users.views import home_view
 urlpatterns = [
     path('', home_view, name='home'),
     path('admin/', admin.site.urls),
-    path('user/', include('users.urls', namespace='user')),
+    path('users/', include('users.urls', namespace='user')),
     path('centros/', include('centros.urls')),  # Incluindo as URLs do app 'centros'
 ]
