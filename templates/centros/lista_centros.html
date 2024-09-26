@@ -1,5 +1,3 @@
-<!-- templates/centros/lista_centros.html -->
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,7 +15,9 @@
                     <strong>{{ centro.nome }}</strong><br>
                     Endereço: {{ centro.endereco }}<br>
                     Telefone: {{ centro.telefone }}<br>
-                    Horário de Funcionamento: {{ centro.horario_funcionamento }}
+                    Horário de Abertura: {{ centro.horario_abertura }}<br>
+                    Horário de Fechamento: {{ centro.horario_fechamento }}<br>
+                    <a href="{% url 'centros:remover_centro' centro.id %}" class="btn btn-danger">Remover</a>
                 </li>
             {% endfor %}
         </ul>

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Remover Centro de Coleta{% endblock %}
+
+{% block content %}
+  <h2>Remover Centro de Coleta</h2>
+  <p>Você tem certeza que deseja remover o centro "{{ centro.nome }}"?</p>
+  
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirmar Remoção</button>
+    <a href="{% url 'centros:lista_centros' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+{% endblock %}

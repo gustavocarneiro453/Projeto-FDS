@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL = '/centros/cadastrar/'
+LOGIN_REDIRECT_URL = ''
 
 LOGIN_URL = '/users/login/'
 

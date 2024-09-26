@@ -14,12 +14,12 @@ class CentroColeta(models.Model):
     ]
 
     nome = models.CharField(max_length=255, help_text="Nome do centro de coleta.")
-    telefone = models.ForeignKey(User, on_delete=models.CASCADE, help_text="Telefone do centro.")
+    telefone = models.CharField(max_length=20, help_text="Telefone do centro.")
     endereco = models.CharField(max_length=500, help_text="Endereço do centro de coleta.")
     numero = models.CharField(max_length=10, help_text="Número do endereço do centro", blank=True, null=True)
     complemento = models.CharField(max_length=50, help_text="Complemento do endereço", blank=True, null=True)
     cep = models.CharField(max_length=9, help_text="Número do CEP", blank=True, null=True)
-    tipos = models.CharField(max_length=255, choices=TIPOS_CHOICES, blank=True, null=True)
+    tipos = models.CharField(max_length=255,blank=True, null=True)
     horario_abertura = models.CharField(max_length=100, help_text="Horário de abertura.", blank=True, null=True)
     horario_fechamento = models.CharField(max_length=100, help_text="Horário de fechamento.", blank=True, null=True)
     usuario_responsavel = models.ForeignKey(User, related_name='centros_responsaveis', on_delete=models.CASCADE, help_text="Usuário responsável pelo centro.")
