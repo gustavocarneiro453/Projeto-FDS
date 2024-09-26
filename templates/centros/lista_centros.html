@@ -1,0 +1,30 @@
+<!-- templates/centros/lista_centros.html -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Centros de Coleta</title>
+</head>
+<body>
+    <h1>Centros de Coleta</h1>
+
+    {% if centros %}
+        <ul>
+            {% for centro in centros %}
+                <li>
+                    <strong>{{ centro.nome }}</strong><br>
+                    Endereço: {{ centro.endereco }}<br>
+                    Telefone: {{ centro.telefone }}<br>
+                    Horário de Funcionamento: {{ centro.horario_funcionamento }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum centro de coleta cadastrado.</p>
+    {% endif %}
+    
+    <a href="{% url 'centros:cadastrar_centro' %}">Cadastrar novo centro</a>
+</body>
+</html>
