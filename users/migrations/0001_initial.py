@@ -11,8 +11,9 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('auth', '0012_alter_user_nome_max_length'),
-    ]
+    ('auth', '0011_update_proxy_permissions'),  # ou a última migração disponível para o app auth
+]
+
 
     operations = [
         migrations.CreateModel(
