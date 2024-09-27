@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.views import LoginView
 from django.contrib import messages
 from .forms import UserCreateForm, UserCompanyCreateForm
 from .models import User
+from django.urls import reverse
 
 def home_view(request):
     return render(request, 'home.html')
@@ -60,9 +62,14 @@ def register_view(request):
             form = UserCreateForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            user = form.save()
             messages.success(request, "Registro realizado com sucesso.")
-            return redirect('login')  # Redirecionar após o registro
+            
+            # Redirecionar com base no tipo de usuário
+            if user_type == 'company':
+                return redirect('empresa_dashboard')  # Redireciona para o dashboard da empresa
+            else:
+                return redirect('usuario_dashboard')  # Redireciona para o dashboard do usuário comum
     else:
         if user_type == 'company':
             form = UserCompanyCreateForm()
@@ -72,3 +79,29 @@ def register_view(request):
     template_name = 'users/criar_empresa.html' if user_type == 'company' else 'users/criar_user.html'
     return render(request, template_name, {'form': form, 'title': 'Registrar como Empresa' if user_type == 'company' else 'Registrar como Usuário Comum'})
 
+
+class CustomLoginView(LoginView):
+    def get_redirect_url(self):
+        user = self.request.user
+        if user.is_authenticated:
+            if user.is_company:
+                return reverse('user:empresa_dashboard')
+            else:
+                return reverse('user:usuario_dashboard')
+        return super().get_redirect_url()
+
+@login_required
+def usuario_dashboard_view(request):
+    """
+    Dashboard para o usuário comum.
+    Apenas usuários autenticados podem acessar.
+    """
+    return render(request, 'users/dashboard_user.html')
+
+@login_required
+def empresa_dashboard_view(request):
+    """
+    Dashboard para empresas.
+    Apenas usuários autenticados podem acessar.
+    """
+    return render(request, 'users/dashboard_empresa.html')
