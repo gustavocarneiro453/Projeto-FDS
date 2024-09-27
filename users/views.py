@@ -81,6 +81,7 @@ def register_view(request):
 
 
 class CustomLoginView(LoginView):
+    template_name = 'users/login.html'
     def get_redirect_url(self):
         user = self.request.user
         if user.is_authenticated:
