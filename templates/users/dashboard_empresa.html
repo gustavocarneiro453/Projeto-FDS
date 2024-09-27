@@ -1,3 +1,41 @@
-<!-- templates/empresa/dashboard.html -->
-{% comment %} <h1>Bem-vindo, {{ request.user.first_name }}!</h1> {% endcomment %}
-<p>Este é o seu painel de controle de empresa.</p>
+<!-- templates/users/dashboard_empresa.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial - EcoTrack</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Bem-vindo ao EcoTrack</h1>
+        <p>Sua plataforma para agendamento e gestão de reciclagem.</p>
+    </header>
+    {% if user.is_authenticated %}
+        <h2>Olá, {{ user.nome}}!</h2>
+    {% else %}
+        <h2>Olá, visitante!</h2>
+    {% endif %}
+
+    <nav>
+        <ul>
+            <li><a href="#">Agendamentos</a></li>
+            <li><a href="#">Rastrear</a></li>
+            <li><a href="#{% url 'centros:lista_centros' %}">Localizações</a></li>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Dicas</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Sobre o EcoTrack</h2>
+        <p>O EcoTrack ajuda você a gerenciar seus resíduos recicláveis de forma eficiente, contribuindo para um futuro mais sustentável.</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 EcoTrack. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

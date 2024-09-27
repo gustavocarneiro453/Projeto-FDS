@@ -32,7 +32,7 @@ def update_centros(request, centro_id):
     else:
         form = CentroColetaForm(instance=centro)
 
-    return render(request, 'centros/update_centro.html', {'form': form})
+    return render(request, 'centros/atualizar_centros.html', {'form': form})
 
 @login_required
 def remover_centros(request, centro_id):
