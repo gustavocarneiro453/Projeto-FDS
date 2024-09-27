@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial - EcoTrack</title>
+    <title>EcoTrack</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
@@ -15,11 +15,10 @@
 
     <nav>
         <ul>
-            <li><a href="{% url 'centros:lista_centros' %}">Ver Centros de Coleta</a></li>
-            <li><a href="{% url 'centros:cadastrar_centro' %}">Cadastrar Centro de Coleta</a></li>
+            <li><a href="{% url 'user:login' %}">Fazer Login</a></li>
+            <li><a href="{% url 'user:register' %}">Registrar-se</a></li>
             <li><a href="#">Dicas de Sustentabilidade</a></li>
             <li><a href="#">Relatórios de Impacto Ambiental</a></li>
-            <li><a href="{% url 'agendamentos:agendamentos_coleta' %}">Agendamento de Coleta</a></li>
         </ul>
     </nav>
 

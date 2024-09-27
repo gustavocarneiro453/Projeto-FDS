@@ -67,9 +67,9 @@ def register_view(request):
             
             # Redirecionar com base no tipo de usuário
             if user_type == 'company':
-                return redirect('empresa_dashboard')  # Redireciona para o dashboard da empresa
+                return redirect('user:empresa_dashboard')  # Redireciona para o dashboard da empresa
             else:
-                return redirect('usuario_dashboard')  # Redireciona para o dashboard do usuário comum
+                return redirect('user:usuario_dashboard')  # Redireciona para o dashboard do usuário comum
     else:
         if user_type == 'company':
             form = UserCompanyCreateForm()
@@ -96,7 +96,10 @@ def usuario_dashboard_view(request):
     Dashboard para o usuário comum.
     Apenas usuários autenticados podem acessar.
     """
-    return render(request, 'users/dashboard_user.html')
+    context = {
+        'user': request.user  # Passa o usuário autenticado para o template
+    }
+    return render(request, 'users/dashboard_user.html', context)
 
 @login_required
 def empresa_dashboard_view(request):
@@ -104,4 +107,7 @@ def empresa_dashboard_view(request):
     Dashboard para empresas.
     Apenas usuários autenticados podem acessar.
     """
-    return render(request, 'users/dashboard_empresa.html')
+    context = {
+        'user': request.user  # Passa o usuário autenticado para o template
+    }
+    return render(request, 'users/dashboard_empresa.html', context)
