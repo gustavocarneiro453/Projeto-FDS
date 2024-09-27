@@ -16,7 +16,8 @@
     <nav>
         <ul>
             <li><a href="{% url 'user:login' %}">Fazer Login</a></li>
-            <li><a href="{% url 'user:register' %}">Registrar-se</a></li>
+            <a href="{% url 'user:register' %}?type=company" class="btn btn-primary">Registrar como Empresa</a>
+            <a href="{% url 'user:register' %}?type=user" class="btn btn-secondary">Registrar como Usuário Comum</a>
             <li><a href="#">Dicas de Sustentabilidade</a></li>
             <li><a href="#">Relatórios de Impacto Ambiental</a></li>
         </ul>
