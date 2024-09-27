@@ -38,6 +38,7 @@ class UserCompanyCreateForm(UserCreationForm):
     """
     Formulário personalizado para criação de empresas.
     """
+    nome_empresa = forms.CharField(required=True, help_text="Nome da empresa.") 
     email = forms.EmailField(required=True, help_text="Endereço de e-mail válido.")
 
     class Meta:
@@ -71,3 +72,14 @@ class UserCompanyCreateForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("Este e-mail já está em uso.")
         return email
+    
+    def save(self, commit=True):
+        """
+        Sobrescreve o método save para garantir que is_company seja True.
+        """
+        user = super().save(commit=False)
+        user.is_company = True
+        print("Nome da Empresa:", user.nome_empresa)  # Verifique se este valor está correto
+        if commit:
+            user.save()
+        return user
