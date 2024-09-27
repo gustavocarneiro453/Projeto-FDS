@@ -8,7 +8,7 @@
     <title>EcoTrack - {% block title %}{% endblock %}</title>
     <!-- Bootstrap CSS via CDN -->
     <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      href="https://stackpath .bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
@@ -36,9 +36,6 @@
                 <a class="nav-link" href="{% url 'centro_coletas:create' %}">Cadastrar Ponto de Coleta</a>
               </li>
             {% endif %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'user:profile_update' %}">Perfil</a>
-            </li>
             {% comment %} <li class="nav-item">
               <a class="nav-link" href="{% url 'user:logout' %}">Logout</a>
             </li> {% endcomment %}

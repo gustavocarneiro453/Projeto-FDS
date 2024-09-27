@@ -33,3 +33,15 @@ def update_centros(request, centro_id):
         form = CentroColetaForm(instance=centro)
 
     return render(request, 'centros/update_centro.html', {'form': form})
+
+@login_required
+def remover_centros(request, centro_id):
+    try:
+        centro = CentroColeta.objects.get(id=centro_id, usuario_responsavel=request.user)
+        if request.method == 'POST':
+            centro.delete()
+            return redirect('centros:lista_centros')
+    except CentroColeta.DoesNotExist:
+        return render(request, 'centros/centro_nao_encontrado.html')
+    return render(request, 'centros/remover_centro.html', {'centro': centro})         
+

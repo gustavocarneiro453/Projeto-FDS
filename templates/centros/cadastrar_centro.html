@@ -26,8 +26,8 @@
             <!-- Rótulo do Campo -->
             {{ field.label_tag }}
             
-            <!-- Campo do Formulário com Classes do Bootstrap -->
-            {{ field|add_class:"form-control" }}
+            <!-- Campo do Formulário (Sem a Classe Bootstrap) -->
+            {{ field }}
             
             <!-- Exibição de Erros Específicos do Campo -->
             {% if field.errors %}
@@ -42,7 +42,7 @@
         
         <!-- Botão de Submissão -->
         <button type="submit" class="btn btn-success">Cadastrar</button>
-        <a href="{% url 'centros:list' %}" class="btn btn-secondary">Cancelar</a>
+        <a href="{% url 'centros:lista_centros' %}" class="btn btn-secondary">Cancelar</a>
       </form>
     </div>
   </div>

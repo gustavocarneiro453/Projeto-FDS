@@ -10,16 +10,18 @@ class CentroColetaForm(forms.ModelForm):
         ('perigoso', 'Perigoso'),
         ('vidro', 'Vidro')
     ]
+    
     tipos = forms.MultipleChoiceField(
         choices=TIPOS_CHOICES,
         widget=forms.CheckboxSelectMultiple,
         label="Tipos de Materiais"
     )
+
     class Meta:
         model = CentroColeta
-        fields = ['nome', 'telefone', 'endereco', 'numero', 'complemento', 'cep', 'tipos', 'horario_abertura', 'horario_fechamento']
-
-    def clean(self):
-        cleaned_data = super().clean()
+        fields = ['nome', 'telefone', 'endereco', 'numero', 'complemento', 'cep', 'tipos', 'horario_abertura', 'horario_fechamento', 'usuario_responsavel']
+    
+    def clean_tipos(self):
+        tipos = self.cleaned_data.get('tipos')
         # Adicione qualquer validacao especifica que voce precisar aqui
-        return cleaned_data
+        return ','.join(tipos)
