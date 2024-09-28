@@ -91,6 +91,7 @@ class CustomLoginView(LoginView):
             else:
                 return reverse('user:usuario_dashboard')
         return super().get_redirect_url()
+    
 
 @login_required
 def usuario_dashboard_view(request):
@@ -113,3 +114,6 @@ def empresa_dashboard_view(request):
         'user': request.user  # Passa o usuário autenticado para o template
     }
     return render(request, 'users/dashboard_empresa.html', context)
+
+def confirmacao_view(request):
+    return render(request, 'agendamentos/confirmacao.html')
