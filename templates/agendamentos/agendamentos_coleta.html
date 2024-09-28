@@ -11,7 +11,7 @@
     <div class="container">
         <header>
             <a href="#" class="back-btn">&larr;</a>
-            <img src="logo.jpg" alt="Ecotrack" class="logo"> <!-- Ajuste a imagem corretamente -->
+            <img src="{% static 'logo.jpg' %}" alt="Ecotrack" class="logo">
         </header>
         
         <h1>Agendamento</h1>
@@ -36,6 +36,16 @@
                     <option value="08:00">08:00</option>
                     <option value="09:00">09:00</option>
                     <option value="10:00">10:00</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="empresa">Escolha a empresa</label>
+                <select id="empresa" name="empresa" required>
+                    <option value="">Selecione uma empresa</option>
+                    {% for empresa in empresas %}
+                        <option value="{{ empresa.id }}">{{ empresa.nome }}</option>
+                    {% endfor %}
                 </select>
             </div>
         

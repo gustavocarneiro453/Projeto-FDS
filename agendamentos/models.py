@@ -8,3 +8,9 @@ class Agendamento(models.Model):
 
     def __str__(self):
         return f'{self.nome} - {self.data} às {self.hora}'
+
+class Empresa(models.Model):
+    nome = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nome
