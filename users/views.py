@@ -93,12 +93,17 @@ class CustomLoginView(LoginView):
 
 @login_required
 def usuario_dashboard_view(request):
+    if request.user.is_authenticated:
+        saudacao = f"Olá, {request.user.nome}!"
+    else:
+        saudacao = "Olá, visitante!"
     """
     Dashboard para o usuário comum.
     Apenas usuários autenticados podem acessar.
     """
     context = {
-        'user': request.user  # Passa o usuário autenticado para o template
+        'user': request.user,
+        'saudacao': saudacao # Passa o usuário autenticado para o template
     }
     return render(request, 'users/dashboard_user.html', context)
 
@@ -108,7 +113,11 @@ def empresa_dashboard_view(request):
     Dashboard para empresas.
     Apenas usuários autenticados podem acessar.
     """
+    if request.user.is_authenticated:
+        saudacao = f"Olá, {request.user.nome_empresa}!"
+
     context = {
-        'user': request.user  # Passa o usuário autenticado para o template
+        'user': request.user,
+        'saudacao': saudacao  # Passa o usuário autenticado para o template
     }
     return render(request, 'users/dashboard_empresa.html', context)
