@@ -29,8 +29,8 @@
     <h3>Não tem uma conta?</h3>
     <div>
         <!-- Links para registrar como empresa ou usuário comum -->
-        <a href="{% url 'users:criar_empresa' %}" class="btn btn-primary">Registrar como Empresa</a>
-        <a href="{% url 'users:criar_user' %}" class="btn btn-secondary">Registrar como Usuário Comum</a>
+        <a href="{% url 'user:register' %}?type=company" class="btn btn-primary">Registrar como Empresa</a>
+        <a href="{% url 'user:register' %}?type=user" class="btn btn-secondary">Registrar como Usuário Comum</a>
     </div>
 </body>
 </html>
