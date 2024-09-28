@@ -1,5 +1,12 @@
+{% block head_css_site %}
+{{ block.super }}
+<link href="{% static 'centros.css' %}" rel="stylesheet" type="text/css">
+{% endblock head_css_site %}
+
+
 <h2>Atualizar Centro de Coleta</h2>
 <form method="POST">
+    
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Salvar Alterações</button>

@@ -1,3 +1,8 @@
+{% block head_css_site %}
+{{ block.super }}
+<link href="{% static 'centros.css' %}" rel="stylesheet" type="text/css">
+{% endblock head_css_site %}
+
 {% extends "base.html" %}
 
 {% block title %}Centro Não Encontrado{% endblock %}
