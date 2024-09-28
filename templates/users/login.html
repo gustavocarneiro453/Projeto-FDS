@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecotrack - Login</title>
+    <title>Login - EcoTrack</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles_login.css' %}">
+    <link rel="stylesheet" href="{% static 'styles_login.css' %}"> <!-- Referência ao CSS -->
 </head>
 <body>
     <div class="container">
@@ -16,22 +16,25 @@
             <img src="{% static 'logo.png' %}" alt="Logo Ecotrack" class="logo">
             <h1>Login</h1>
             <br>
-            <p>Ainda não tem conta? <a href="#" class="signup-link">Cadastre-se</a></p>
-            <form>
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" placeholder="carlosribeiro@gmail.com" required>
-                <br>
-                <br>
-                <label for="password">Senha</label>
-                <input type="password" id="password" name="password" placeholder="*****************" required>
-                <br>
-                <br>
+            <p>Ainda não tem conta? <a href="{% url 'user:register' %}" class="signup-link">Cadastre-se</a></p>
+            
+            <!-- Formulário de login -->
+            <form method="post" action="{% url 'user:login' %}">
+                {% csrf_token %}
+                
+                <label for="username">Nome de Usuário:</label>
+                <input type="text" id="username" name="username" placeholder="@gmail.com" required>
+                
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" placeholder="**********" required>
+                
                 <button type="submit">Entrar</button>
             </form>
+            
+            
         </div>
-        <br>
+
         <div class="illustration">
-            <!-- Desenho das mãos segurando recicláveis -->
             <img src="{% static 'img_reciclagem.png' %}" alt="Mãos com recicláveis" class="logo2">
         </div>
     </div>

@@ -24,5 +24,5 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='user')),
     path('centros/', include('centros.urls')),  # Incluindo as URLs do app 'centros'
     path('agendamento/', include('agendamentos.urls')),  # Inclui as URLs da aplicação de agendamento
-
+    
 ]
