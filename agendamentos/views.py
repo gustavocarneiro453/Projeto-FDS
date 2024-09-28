@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Agendamento
-from django.core.exceptions import ValidationError
+from .models import Agendamento, Empresa
+from django.core.exceptions import ValidationError 
 
 def agendar(request):
     if request.method == 'POST':
@@ -34,3 +34,11 @@ def agendar(request):
 
 def confirmacao_view(request):
     return render(request, 'agendamentos/confirmacao.html')  # Página de confirmação
+
+def agendar_view(request):
+    empresas = Empresa.objects.all()  # Obtendo todas as empresas
+    if request.method == 'POST':
+        # Aqui você pode processar o formulário
+        pass
+
+    return render(request, 'seu_template.html', {'empresas': empresas})
