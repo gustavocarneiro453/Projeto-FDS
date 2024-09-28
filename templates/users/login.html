@@ -1,36 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - EcoTrack</title>
-    <link rel="stylesheet" href="/static/styles.css"> <!-- Referência ao CSS -->
+    <title>Ecotrack - Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles_login.css' %}">
 </head>
 <body>
-    <header>
-        <h1>Login</h1>
-    </header>
-
-    <!-- Formulário de login -->
-    <form method="post" action="../login/">
-        <!-- Token CSRF gerado pela view -->
-        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-        
-        <!-- Campos de entrada para nome de usuário e senha -->
-        <label for="username">Nome de Usuário:</label>
-        <input type="text" id="username" name="username" value="{{ username }}" required><br><br>
-
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" value="{{ password }}" required><br><br>
-        
-        <button type="submit">Entrar</button>
-    </form>
-
-    <h3>Não tem uma conta?</h3>
-    <div>
-        <!-- Links para registrar como empresa ou usuário comum -->
-        <a href="{% url 'user:register' %}?type=company" class="btn btn-primary">Registrar como Empresa</a>
-        <a href="{% url 'user:register' %}?type=user" class="btn btn-secondary">Registrar como Usuário Comum</a>
+    <div class="container">
+        <div class="back-button">
+            <a href="#">&larr;</a>
+        </div>
+        <div class="login-box">
+            <img src="{% static 'logo.png' %}" alt="Logo Ecotrack" class="logo">
+            <h1>Login</h1>
+            <br>
+            <p>Ainda não tem conta? <a href="#" class="signup-link">Cadastre-se</a></p>
+            <form>
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="carlosribeiro@gmail.com" required>
+                <br>
+                <br>
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="*****************" required>
+                <br>
+                <br>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+        <br>
+        <div class="illustration">
+            <!-- Desenho das mãos segurando recicláveis -->
+            <img src="{% static 'img_reciclagem.png' %}" alt="Mãos com recicláveis" class="logo2">
+        </div>
     </div>
 </body>
 </html>
