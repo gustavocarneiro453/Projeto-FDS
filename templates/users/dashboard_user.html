@@ -19,9 +19,9 @@
 
         <nav>
             <ul>
-                <li><a href="{{ agendar_url }}">Agendar</a></li>
+                <li><a href="{% url 'agendamentos:agendamentos_coleta'%}">Agendar</a></li>
                 <li><a href="#">Rastrear</a></li>
-                <li><a href="#">Localizar</a></li>
+                <li><a href="{% url 'centros:lista_centros' %}">Localizar</a></li>
                 <li><a href="#">Sobre</a></li>
                 <li><a href="#">Dicas</a></li>
             </ul>
