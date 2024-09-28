@@ -15,7 +15,9 @@
     >
     <!-- CSS Personalizado -->
     {% load static %}
+    {% block css %}
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+    {% endblock css %}
 </head>
 <body>
     <!-- Barra de Navegacao -->
