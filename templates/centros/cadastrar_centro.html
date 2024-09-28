@@ -1,49 +1,58 @@
-<!-- centros/templates/centros/criar_centros.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Ponto de Coleta</title>
+</head>
+<body>
+    <h2>Cadastrar Ponto de Coleta</h2>
+    <form method="post" action="/cadastrar_centro/">
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" required>
+            <div class="text-danger" id="nome-error"></div>
+        </div>
 
-{% extends "base.html" %}
+        <div class="form-group">
+            <label for="telefone">Telefone</label>
+            <input type="text" id="telefone" name="telefone" required>
+            <div class="text-danger" id="telefone-error"></div>
+        </div>
 
-{% block title %}Cadastrar Ponto de Coleta{% endblock %}
+        <div class="form-group">
+            <label for="endereco">Endereço</label>
+            <input type="text" id="endereco" name="endereco" required>
+            <div class="text-danger" id="endereco-error"></div>
+        </div>
 
-{% block content %}
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <h2 class="mb-4">Cadastrar Ponto de Coleta</h2>
-      <form method="post" novalidate>
-        {% csrf_token %}
-        
-        <!-- Exibição de Erros Não Relacionados a Campos Específicos -->
-        {% if form.non_field_errors %}
-          <div class="alert alert-danger">
-            {% for error in form.non_field_errors %}
-              <p>{{ error }}</p>
-            {% endfor %}
-          </div>
-        {% endif %}
-        
-        <!-- Iteração sobre os Campos do Formulário -->
-        {% for field in form %}
-          <div class="form-group">
-            <!-- Rótulo do Campo -->
-            {{ field.label_tag }}
-            
-            <!-- Campo do Formulário (Sem a Classe Bootstrap) -->
-            {{ field }}
-            
-            <!-- Exibição de Erros Específicos do Campo -->
-            {% if field.errors %}
-              <div class="text-danger">
-                {% for error in field.errors %}
-                  <small>{{ error }}</small>
-                {% endfor %}
-              </div>
-            {% endif %}
-          </div>
-        {% endfor %}
-        
-        <!-- Botão de Submissão -->
-        <button type="submit" class="btn btn-success">Cadastrar</button>
-        <a href="{% url 'centros:lista_centros' %}" class="btn btn-secondary">Cancelar</a>
-      </form>
-    </div>
-  </div>
-{% endblock %}
+        <!-- Outros campos como 'numero', 'complemento', 'cep', etc... -->
+
+        <div class="form-group">
+            <label>Tipos de Materiais</label><br>
+            <input type="checkbox" name="tipos" value="metal"> Metal<br>
+            <input type="checkbox" name="tipos" value="papel"> Papel<br>
+            <input type="checkbox" name="tipos" value="plastico"> Plástico<br>
+            <input type="checkbox" name="tipos" value="organico"> Orgânico<br>
+            <input type="checkbox" name="tipos" value="perigoso"> Perigoso<br>
+            <input type="checkbox" name="tipos" value="vidro"> Vidro<br>
+            <div class="text-danger" id="tipos-error"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="horario_abertura">Horário de Abertura</label>
+            <input type="time" id="horario_abertura" name="horario_abertura" required>
+            <div class="text-danger" id="horario-abertura-error"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="horario_fechamento">Horário de Fechamento</label>
+            <input type="time" id="horario_fechamento" name="horario_fechamento" required>
+            <div class="text-danger" id="horario-fechamento-error"></div>
+        </div>
+
+        <button type="submit">Cadastrar</button>
+        <a href="/lista_centros/">Cancelar</a>
+    </form>
+</body>
+</html>

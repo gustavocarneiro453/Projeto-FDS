@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Centro de Coleta</title>
+    <link rel="stylesheet" href="/static/centros.css" type="text/css">
+</head>
+<body>
+    <h2>Atualizar Centro de Coleta</h2>
+    <form action="/url/do/update/centros" method="POST">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+        <!-- Campos do Centro de Coleta -->
+        <label for="nome">Nome do Centro:</label>
+        <input type="text" id="nome" name="nome" value="{{ centro.nome }}" required><br>
+
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" name="endereco" value="{{ centro.endereco }}" required><br>
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" value="{{ centro.telefone }}" required><br>
+
+        <!-- Botão de Submissão -->
+        <button type="submit">Salvar Alterações</button>
+    </form>
+</body>
+</html>

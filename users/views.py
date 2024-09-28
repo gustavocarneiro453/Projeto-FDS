@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.views import LoginView
 from django.contrib import messages
 from .forms import UserCreateForm, UserCompanyCreateForm
 from .models import User
+from django.urls import reverse
 
 def home_view(request):
     return render(request, 'home.html')
@@ -33,26 +35,6 @@ def user_detail_view(request, id):
     user = get_object_or_404(User, id=id)
     return render(request, 'users/user_detail.html', {'user_detail': user})
 
-# @login_required
-# @user_passes_test(is_admin)
-# def user_update_view(request, id):
-#     """
-#     View para atualizar um usuário existente.
-#     Apenas administradores podem acessar.
-#     """
-#     user_obj = get_object_or_404(User, id=id)
-#     if request.method == 'POST':
-#         form = UserUpdateForm(request.POST, instance=user_obj)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, "Usuário atualizado com sucesso.")
-#             return redirect('user:user-detail', id=user_obj.id)
-#         else:
-#             messages.error(request, "Por favor, corrija os erros abaixo.")
-#     else:
-#         form = UserUpdateForm(instance=user_obj)
-#     return render(request, 'users/user_form.html', {'form': form, 'title': 'Atualizar Usuário'})
-
 @login_required
 @user_passes_test(is_admin)
 def user_delete_view(request, id):
@@ -67,34 +49,6 @@ def user_delete_view(request, id):
         return redirect('user:listar_user')
     return render(request, 'users/user_confirm_delete.html', {'user_obj': user_obj})
 
-#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
-# def user_register_view(request):
-#     """
-#     View para registrar um usuário comum.
-#     """
-#     if request.method == 'POST':
-#         form = UserCreateForm(request.POST)
-#         if form.is_valid() and not form.cleaned_data['is_company']:
-#             form.save()
-#             return redirect('login')  # Redireciona para a página de login após o registro
-#     else:
-#         form = UserCreateForm(initial={'is_company': False})  # Define como usuário comum
-#     return render(request, 'users/criar_user.html', {'form': form, 'title': 'Registrar como Usuário Comum'})
-
-# def company_register_view(request):
-#     """
-#     View para registrar uma empresa.
-#     """
-#     if request.method == 'POST':
-#         form = UserCreateForm(request.POST)
-#         if form.is_valid() and form.cleaned_data['is_company']:
-#             form.save()
-#             return redirect('login')  # Redireciona para a página de login após o registro
-#     else:
-#         form = UserCompanyCreateForm(initial={'is_company': True})  # Define como empresa
-#     return render(request, 'users/criar_empresa.html', {'form': form, 'title': 'Registrar como Empresa'})
-
 def register_view(request):
     """
     View para registrar um usuário comum ou uma empresa.
@@ -108,9 +62,14 @@ def register_view(request):
             form = UserCreateForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            user = form.save()
             messages.success(request, "Registro realizado com sucesso.")
-            return redirect('login')  # Redirecionar após o registro
+            
+            # Redirecionar com base no tipo de usuário
+            if user_type == 'company':
+                return redirect('user:empresa_dashboard')  # Redireciona para o dashboard da empresa
+            else:
+                return redirect('user:usuario_dashboard')  # Redireciona para o dashboard do usuário comum
     else:
         if user_type == 'company':
             form = UserCompanyCreateForm()
@@ -120,3 +79,36 @@ def register_view(request):
     template_name = 'users/criar_empresa.html' if user_type == 'company' else 'users/criar_user.html'
     return render(request, template_name, {'form': form, 'title': 'Registrar como Empresa' if user_type == 'company' else 'Registrar como Usuário Comum'})
 
+
+class CustomLoginView(LoginView):
+    template_name = 'users/login.html'
+    def get_redirect_url(self):
+        user = self.request.user
+        if user.is_authenticated:
+            if user.is_company:
+                return reverse('user:empresa_dashboard')
+            else:
+                return reverse('user:usuario_dashboard')
+        return super().get_redirect_url()
+
+@login_required
+def usuario_dashboard_view(request):
+    """
+    Dashboard para o usuário comum.
+    Apenas usuários autenticados podem acessar.
+    """
+    context = {
+        'user': request.user  # Passa o usuário autenticado para o template
+    }
+    return render(request, 'users/dashboard_user.html', context)
+
+@login_required
+def empresa_dashboard_view(request):
+    """
+    Dashboard para empresas.
+    Apenas usuários autenticados podem acessar.
+    """
+    context = {
+        'user': request.user  # Passa o usuário autenticado para o template
+    }
+    return render(request, 'users/dashboard_empresa.html', context)

@@ -15,7 +15,9 @@
     >
     <!-- CSS Personalizado -->
     {% load static %}
+    {% block css %}
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+    {% endblock css %}
 </head>
 <body>
     <!-- Barra de Navegacao -->
@@ -33,7 +35,7 @@
             </li>
             {% if user.is_company %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'centro_coletas:create' %}">Cadastrar Ponto de Coleta</a>
+                <a class="nav-link" href="{% url 'centros:cadastrar_centro' %}">Cadastrar Ponto de Coleta</a>
               </li>
             {% endif %}
             {% comment %} <li class="nav-item">

@@ -1,14 +1,18 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remover Centro de Coleta</title>
+</head>
+<body>
+    <h2>Remover Centro de Coleta</h2>
+    <p>Você tem certeza que deseja remover o centro "{{ centro.nome }}"?</p>
 
-{% block title %}Remover Centro de Coleta{% endblock %}
-
-{% block content %}
-  <h2>Remover Centro de Coleta</h2>
-  <p>Você tem certeza que deseja remover o centro "{{ centro.nome }}"?</p>
-  
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Confirmar Remoção</button>
-    <a href="{% url 'centros:lista_centros' %}" class="btn btn-secondary">Cancelar</a>
-  </form>
-{% endblock %}
+    <form method="post" action="/remover_centro/{{ centro.id }}/">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <button type="submit">Confirmar Remoção</button>
+        <a href="/lista_centros/">Cancelar</a>
+    </form>
+</body>
+</html>

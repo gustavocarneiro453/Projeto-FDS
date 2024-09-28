@@ -21,6 +21,7 @@ class User(AbstractUser):
     """
     Modelo de usuario personalizado para diferenciar entre usuarios comuns e empresas.
     """
+    username = None  # Remove o campo username
     email = models.EmailField(unique=True, blank=False, help_text="Endereço de e-mail do usuário.")
 
     is_company = models.BooleanField(default=False, help_text="Designa se o usuário é uma empresa.")
@@ -52,7 +53,6 @@ class User(AbstractUser):
     )
 
     objects = UserManager()
-
 
     # Definindo o e-mail como campo de login
     USERNAME_FIELD = 'email'
