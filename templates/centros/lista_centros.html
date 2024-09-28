@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Centros de Coleta</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'centros.css' %}">
 </head>
 <body>
     <h1>Centros de Coleta</h1>
@@ -19,7 +17,10 @@
                     Telefone: {{ centro.telefone }}<br>
                     Horário de Abertura: {{ centro.horario_abertura }}<br>
                     Horário de Fechamento: {{ centro.horario_fechamento }}<br>
-                    <a href="{% url 'centros:remover_centro' centro.id %}" class="btn btn-danger">Remover</a>
+                    <form action="{% url 'centros:remover_centro' centro.id %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Remover</button>
+                    </form>
                 </li>
             {% endfor %}
         </ul>
@@ -27,6 +28,6 @@
         <p>Nenhum centro de coleta cadastrado.</p>
     {% endif %}
     
-    <a href="{% url 'centros:cadastrar_centro' %}">Cadastrar novo centro</a>
+    <a href="/cadastrar_centro/">Cadastrar novo centro</a>
 </body>
 </html>
