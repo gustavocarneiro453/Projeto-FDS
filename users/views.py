@@ -57,6 +57,8 @@ def register_view(request):
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
         username = request.POST.get('username')
+        endereco = request.POST.get('endereco')
+        cep = request.POST.get('cep')
         errors = {}
 
         # Verificação de campos obrigatórios
@@ -67,6 +69,10 @@ def register_view(request):
                 errors['email'] = "O campo Email é obrigatório."
             if not password1:
                 errors['password1'] = "O campo Senha é obrigatório."
+            if not endereco:
+                errors['endereco'] = "O campo Endereço é obrigatório."
+            if not cep:
+                errors['cep'] = "O campo CEP é obrigatório."
         else:
             if not username:
                 errors['username'] = "O campo Nome de Usuário é obrigatório."
@@ -91,6 +97,8 @@ def register_view(request):
                 'nome_empresa_value': nome_empresa if user_type == 'company' else '',
                 'username_value': username if user_type != 'company' else '',
                 'email_value': email,
+                'endereco_value': endereco,
+                'cep_value': cep,
                 'form_action': request.path,
                 'csrf_token': request.COOKIES.get('csrftoken'),
             }
@@ -102,6 +110,8 @@ def register_view(request):
             is_company=True if user_type == 'company' else False,
             nome_empresa=nome_empresa if user_type == 'company' else None,
             username=username if user_type != 'company' else None,
+            endereco=endereco if user_type == 'company' else None,
+            cep=cep if user_type == 'company' else None,
         )
         user.set_password(password1)
         user.save()
@@ -123,50 +133,3 @@ def register_view(request):
             'title': 'Registrar como Empresa' if user_type == 'company' else 'Registrar como Usuário Comum',
         }
         return render(request, template_name, context)
-
-class CustomLoginView(LoginView):
-    template_name = 'users/login.html'
-
-    def get_redirect_url(self):
-        user = self.request.user
-        if user.is_authenticated:
-            if hasattr(user, 'is_company') and user.is_company:
-                return reverse('user:empresa_dashboard')
-            else:
-                return reverse('user:usuario_dashboard')
-        return super().get_redirect_url()
-    
-
-@login_required
-def usuario_dashboard_view(request):
-    if request.user.is_authenticated:
-        saudacao = f"Olá, {request.user.nome}!"
-    else:
-        saudacao = "Olá, visitante!"
-    """
-    Dashboard para o usuário comum.
-    Apenas usuários autenticados podem acessar.
-    """
-    context = {
-        'user': request.user,
-        'saudacao': saudacao # Passa o usuário autenticado para o template
-    }
-    return render(request, 'users/dashboard_user.html', context)
-
-@login_required
-def empresa_dashboard_view(request):
-    """
-    Dashboard para empresas.
-    Apenas usuários autenticados podem acessar.
-    """
-    if request.user.is_authenticated:
-        saudacao = f"Olá, {request.user.nome_empresa}!"
-
-    context = {
-        'user': request.user,
-        'saudacao': saudacao  # Passa o usuário autenticado para o template
-    }
-    return render(request, 'users/dashboard_empresa.html', context)
-
-def confirmacao_view(request):
-    return render(request, 'agendamentos/confirmacao.html')
