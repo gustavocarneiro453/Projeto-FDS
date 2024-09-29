@@ -61,7 +61,7 @@ def cadastrar_centro(request):
 
     return render(request, 'centros/cadastrar_centro.html')
 
-
+@login_required
 def lista_centros(request):
     centros = CentroColeta.objects.all()
     # Processar os tipos para cada centro
