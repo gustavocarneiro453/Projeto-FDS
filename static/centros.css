@@ -217,3 +217,30 @@ small {
         text-align: center;
     }
 }
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Empurra os itens para os cantos */
+    align-items: center; /* Centraliza verticalmente os itens */
+    background-color: #e4e4e4; /* Cor de fundo opcional */
+    padding: 10px 20px; /* Espaçamento opcional */
+}
+.nav-link {
+    margin-right: auto; /* Empurra o link para o canto direito */
+    padding: 10px 15px; /* Espaçamento ao redor do link */
+}
+
+.nav-link2 {
+    margin-left: auto; /* Empurra o link para o canto direito */
+    color: rgb(0, 0, 0); /* Cor do texto */
+    background-color: #28a745;
+    text-decoration: none;
+    padding: 10px 15px; /* Espaçamento ao redor do link */
+    border-radius: 10px;
+}
+
+.nav-link:hover {
+    background-color: #34495e; /* Cor de fundo ao passar o mouse */
+    border-radius: 4px; /* Bordas arredondadas ao passar o mouse */
+}

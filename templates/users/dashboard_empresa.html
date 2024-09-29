@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends "base.html" %}
+{% block title %}Página Inicial{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial - EcoTrack</title>
-    <link rel="stylesheet" href="path/to/your/styles.css">
-</head>
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'centros.css' %}">
+{% endblock css %}
 
-<body>
+{% block content %}
     <header>
         <h1>Bem-vindo ao EcoTrack</h1>
         <p>Sua plataforma para agendamento e gestão de reciclagem.</p>
     </header>
-
-    <h2>{{ saudacao }}</h2>
 
     <nav>
         <ul>
@@ -35,6 +31,4 @@
     <footer>
         <p>&copy; 2024 EcoTrack. Todos os direitos reservados.</p>
     </footer>
-</body>
-
-</html>
+{% endblock %}

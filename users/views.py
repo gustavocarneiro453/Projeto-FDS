@@ -23,17 +23,24 @@ def user_list_view(request):
     Apenas administradores podem acessar.
     """
     users = User.objects.all()
-    return render(request, 'users/user_list.html', {'users': users})
+    return render(request, 'users/listar_user.html', {'users': users})
 
 @login_required
-@user_passes_test(is_admin)
 def user_detail_view(request, id):
     """
     View para detalhar um usuário específico.
     Apenas administradores podem acessar.
     """
-    user = get_object_or_404(User, id=id)
-    return render(request, 'users/user_detail.html', {'user_detail': user})
+    # Obtém o usuário específico pelo ID, ou retorna 404 se não existir
+    user_detail = get_object_or_404(User, id=id)
+
+    # Contexto a ser passado para o template
+    context = {
+        'user': request.user,  # O usuário que está autenticado
+        'user_detail': user_detail  # O usuário que está sendo detalhado
+    }
+    print(f"User: {request.user}, ID: {id}")
+    return render(request, 'users/detail_user.html', context)
 
 @login_required
 @user_passes_test(is_admin)
@@ -56,7 +63,8 @@ def register_view(request):
         email = request.POST.get('email')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
-        username = request.POST.get('username')
+
+        nome = request.POST.get('nome')
         endereco = request.POST.get('endereco')
         cep = request.POST.get('cep')
         errors = {}
@@ -74,8 +82,8 @@ def register_view(request):
             if not cep:
                 errors['cep'] = "O campo CEP é obrigatório."
         else:
-            if not username:
-                errors['username'] = "O campo Nome de Usuário é obrigatório."
+            if not nome:
+                errors['nome'] = "O campo Nome de Usuário é obrigatório."
             if not email:
                 errors['email'] = "O campo Email é obrigatório."
             if not password1:
@@ -95,7 +103,7 @@ def register_view(request):
             context = {
                 'errors': errors,
                 'nome_empresa_value': nome_empresa if user_type == 'company' else '',
-                'username_value': username if user_type != 'company' else '',
+                'nome_value': nome if user_type != 'company' else '',
                 'email_value': email,
                 'endereco_value': endereco,
                 'cep_value': cep,
@@ -109,7 +117,8 @@ def register_view(request):
             email=email,
             is_company=True if user_type == 'company' else False,
             nome_empresa=nome_empresa if user_type == 'company' else None,
-            username=username if user_type != 'company' else None,
+
+            nome=nome if user_type != 'company' else None,
             endereco=endereco if user_type == 'company' else None,
             cep=cep if user_type == 'company' else None,
         )
@@ -133,3 +142,45 @@ def register_view(request):
             'title': 'Registrar como Empresa' if user_type == 'company' else 'Registrar como Usuário Comum',
         }
         return render(request, template_name, context)
+
+class CustomLoginView(LoginView):
+    template_name = 'users/login.html'
+
+    def get_redirect_url(self):
+        user = self.request.user
+        if user.is_authenticated:
+            if hasattr(user, 'is_company') and user.is_company:
+                return reverse('user:empresa_dashboard')
+            else:
+                return reverse('user:usuario_dashboard')
+        return super().get_redirect_url()
+    
+
+@login_required
+def usuario_dashboard_view(request):
+    """
+    Dashboard para o usuário comum.
+    Apenas usuários autenticados podem acessar.
+    """
+    context = {
+        'user': request.user,
+        'user_id': request.user.id,
+    }
+    return render(request, 'users/dashboard_user.html', context)
+
+@login_required
+def empresa_dashboard_view(request):
+    """
+    Dashboard para empresas.
+    Apenas usuários autenticados podem acessar.
+    """
+
+    context = {
+        'user': request.user,
+        'user_id': request.user.id,
+    }
+    return render(request, 'users/dashboard_empresa.html', context)
+
+def confirmacao_view(request):
+    return render(request, 'agendamentos/confirmacao.html')
+
