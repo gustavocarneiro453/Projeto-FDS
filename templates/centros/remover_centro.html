@@ -12,7 +12,7 @@
     <form method="post" action="/remover_centro/{{ centro.id }}/">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
         <button type="submit">Confirmar Remoção</button>
-        <a href="/lista_centros/">Cancelar</a>
+        <a href="centros:lista_centros">Cancelar</a>
     </form>
 </body>
 </html>

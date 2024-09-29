@@ -7,52 +7,83 @@
 </head>
 <body>
     <h2>Cadastrar Ponto de Coleta</h2>
-    <form method="post" action="/cadastrar_centro/">
+
+    <form method="post" action="{% url 'centros:cadastrar_centro' %}">
+        {% csrf_token %}
+
+        <!-- Campo Nome -->
         <div class="form-group">
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" name="nome" required>
-            <div class="text-danger" id="nome-error"></div>
+            <label for="nome">Nome do Centro de Coleta</label>
+            <input type="text" id="nome" name="nome" maxlength="255" required value="{{ form_data.nome|default_if_none:'' }}">
         </div>
 
+        <!-- Campo Telefone -->
         <div class="form-group">
             <label for="telefone">Telefone</label>
-            <input type="text" id="telefone" name="telefone" required>
-            <div class="text-danger" id="telefone-error"></div>
+            <input type="text" id="telefone" name="telefone" maxlength="20" required value="{{ form_data.telefone|default_if_none:'' }}">
         </div>
 
+        <!-- Campo Endereço -->
         <div class="form-group">
             <label for="endereco">Endereço</label>
-            <input type="text" id="endereco" name="endereco" required>
-            <div class="text-danger" id="endereco-error"></div>
+            <input type="text" id="endereco" name="endereco" maxlength="500" required value="{{ form_data.endereco|default_if_none:'' }}">
         </div>
 
-        <!-- Outros campos como 'numero', 'complemento', 'cep', etc... -->
+        <!-- Campo Número -->
+        <div class="form-group">
+            <label for="numero">Número</label>
+            <input type="text" id="numero" name="numero" maxlength="10" value="{{ form_data.numero|default_if_none:'' }}">
+        </div>
 
+        <!-- Campo Complemento -->
+        <div class="form-group">
+            <label for="complemento">Complemento</label>
+            <input type="text" id="complemento" name="complemento" maxlength="50" value="{{ form_data.complemento|default_if_none:'' }}">
+        </div>
+
+        <!-- Campo CEP -->
+        <div class="form-group">
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" name="cep" maxlength="9" required value="{{ form_data.cep|default_if_none:'' }}">
+        </div>
+
+        <!-- Campo Tipos de Materiais (Checkboxes) -->
         <div class="form-group">
             <label>Tipos de Materiais</label><br>
-            <input type="checkbox" name="tipos" value="metal"> Metal<br>
-            <input type="checkbox" name="tipos" value="papel"> Papel<br>
-            <input type="checkbox" name="tipos" value="plastico"> Plástico<br>
-            <input type="checkbox" name="tipos" value="organico"> Orgânico<br>
-            <input type="checkbox" name="tipos" value="perigoso"> Perigoso<br>
-            <input type="checkbox" name="tipos" value="vidro"> Vidro<br>
-            <div class="text-danger" id="tipos-error"></div>
+            <input type="checkbox" name="tipos" value="metal" {% if "metal" in form_data.tipos %}checked{% endif %}> Metal<br>
+            <input type="checkbox" name="tipos" value="papel" {% if "papel" in form_data.tipos %}checked{% endif %}> Papel<br>
+            <input type="checkbox" name="tipos" value="plastico" {% if "plastico" in form_data.tipos %}checked{% endif %}> Plástico<br>
+            <input type="checkbox" name="tipos" value="organico" {% if "organico" in form_data.tipos %}checked{% endif %}> Orgânico<br>
+            <input type="checkbox" name="tipos" value="perigoso" {% if "perigoso" in form_data.tipos %}checked{% endif %}> Perigoso<br>
+            <input type="checkbox" name="tipos" value="vidro" {% if "vidro" in form_data.tipos %}checked{% endif %}> Vidro<br>
         </div>
 
+        <!-- Campo Horário de Abertura -->
         <div class="form-group">
             <label for="horario_abertura">Horário de Abertura</label>
-            <input type="time" id="horario_abertura" name="horario_abertura" required>
-            <div class="text-danger" id="horario-abertura-error"></div>
+            <input type="time" id="horario_abertura" name="horario_abertura" value="{{ form_data.horario_abertura|default_if_none:'' }}">
         </div>
 
+        <!-- Campo Horário de Fechamento -->
         <div class="form-group">
             <label for="horario_fechamento">Horário de Fechamento</label>
-            <input type="time" id="horario_fechamento" name="horario_fechamento" required>
-            <div class="text-danger" id="horario-fechamento-error"></div>
+            <input type="time" id="horario_fechamento" name="horario_fechamento" value="{{ form_data.horario_fechamento|default_if_none:'' }}">
         </div>
 
+        <!-- Botões -->
         <button type="submit">Cadastrar</button>
-        <a href="/lista_centros/">Cancelar</a>
+        <a href="{% url 'centros:lista_centros' %}">Cancelar</a>
     </form>
+
+    <!-- Exibe erros se houver -->
+    {% if errors %}
+        <div class="alert alert-danger">
+            <ul>
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 </body>
 </html>

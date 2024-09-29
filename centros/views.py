@@ -42,16 +42,17 @@ def cadastrar_centro(request):
                     numero=numero,
                     complemento=complemento,
                     cep=cep,
-                    tipos=','.join(tipos),
+                    tipos=','.join(tipos),  # Verifique se o modelo aceita string de tipos
                     horario_abertura=horario_abertura,
                     horario_fechamento=horario_fechamento,
                     usuario_responsavel=request.user
                 )
                 centro.full_clean()  # Verifica a validade dos campos
                 centro.save()
-                return redirect('/lista_centros/')  # Redirecionar para a lista de centros
+                return redirect('centros:lista_centros')  # Redirecionar para a lista de centros
             except ValidationError as e:
                 errors.extend(e.messages)
+                print(e.messages)  # Exibe os erros de validação
 
         return render(request, 'centros/cadastrar_centro.html', {
             'errors': errors,
@@ -72,11 +73,12 @@ def remover_centro(request, centro_id):
         centro = CentroColeta.objects.get(id=centro_id, usuario_responsavel=request.user)
         if request.method == 'POST':
             centro.delete()
-            return redirect('/lista_centros/')
+            return redirect('centros:lista_centros')
     except CentroColeta.DoesNotExist:
-        return render(request, 'centros/centro_nao_encontrado.html')
+        return render(request, 'centros/centro_nao_cadastrado.html')
     return render(request, 'centros/remover_centro.html', {'centro': centro})
 
+@login_required
 def update_centros(request, centro_id):
     # Obtendo o centro de coleta específico
     centro = get_object_or_404(CentroColeta, id=centro_id, usuario_responsavel=request.user)
