@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Ponto de Coleta</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Cadastrar Ponto de Coleta{% endblock %}
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'centros.css' %}">
+{% endblock css %}
+
+{% block content %}
     <h2>Cadastrar Ponto de Coleta</h2>
 
     <form method="post" action="{% url 'centros:cadastrar_centro' %}">
@@ -85,5 +86,8 @@
             </ul>
         </div>
     {% endif %}
-</body>
-</html>
+
+{% endblock %}
+
+
+

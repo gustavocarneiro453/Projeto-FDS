@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Centros de Coleta</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Lista de Centros de Coleta{% endblock %}
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'centros.css' %}">
+{% endblock css %}
+
+{% block content %}
     <h1>Centros de Coleta</h1>
 
     {% if centros %}
@@ -13,21 +14,34 @@
             {% for centro in centros %}
                 <li>
                     <strong>{{ centro.nome }}</strong><br>
-                    Endereço: {{ centro.endereco }}<br>
+                    Endereço: {{ centro.endereco }}, {{ centro.numero }} {{ centro.complemento }}<br>
+                    CEP: {{ centro.cep }}<br>
                     Telefone: {{ centro.telefone }}<br>
+                    <strong>Tipos de Materiais:</strong><br>
+                    <ul>
+                        {% if centro.tipos_lista %}
+                            {% for tipo in centro.tipos_lista %}
+                                <li>{{ tipo }}</li>
+                            {% endfor %}
+                        {% else %}
+                            <li>Nenhum tipo selecionado.</li>
+                        {% endif %}
+                    </ul>
                     Horário de Abertura: {{ centro.horario_abertura }}<br>
                     Horário de Fechamento: {{ centro.horario_fechamento }}<br>
+                    
+                    <!-- Botões de Remover e Editar -->
                     <form action="{% url 'centros:remover_centro' centro.id %}" method="post" style="display: inline;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger">Remover</button>
                     </form>
+                    <a href="{% url 'centros:atualizar_centro' centro.id %}" class="btn btn-primary">Editar</a>
                 </li>
             {% endfor %}
         </ul>
     {% else %}
         <p>Nenhum centro de coleta cadastrado.</p>
     {% endif %}
-    
+
     <a href="{% url 'centros:cadastrar_centro' %}">Cadastrar novo centro</a>
-</body>
-</html>
+{% endblock %}

@@ -64,6 +64,9 @@ def cadastrar_centro(request):
 
 def lista_centros(request):
     centros = CentroColeta.objects.all()
+    # Processar os tipos para cada centro
+    for centro in centros:
+        centro.tipos_lista = [tipo.strip() for tipo in centro.tipos.split(",")] if centro.tipos else []
     return render(request, 'centros/lista_centros.html', {'centros': centros})
 
 
@@ -79,7 +82,7 @@ def remover_centro(request, centro_id):
     return render(request, 'centros/remover_centro.html', {'centro': centro})
 
 @login_required
-def update_centros(request, centro_id):
+def atualizar_centro(request, centro_id):
     # Obtendo o centro de coleta específico
     centro = get_object_or_404(CentroColeta, id=centro_id, usuario_responsavel=request.user)
 
