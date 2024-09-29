@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Atualizar Centro de Coleta{% endblock %}
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'centros.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+    <h2>Atualizar Centro de Coleta</h2>
+    <form action="{% url 'centros:atualizar_centro' centro.id %}" method="POST">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+        <!-- Nome -->
+        <label for="nome">Nome do Centro:</label>
+        <input type="text" id="nome" name="nome" value="{{ centro.nome }}" maxlength="255" required><br>
+
+        <!-- Endereço -->
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" name="endereco" value="{{ centro.endereco }}" maxlength="500" required><br>
+
+        <!-- Número -->
+        <label for="numero">Número:</label>
+        <input type="text" id="numero" name="numero" value="{{ centro.numero }}" maxlength="10"><br>
+
+        <!-- Complemento -->
+        <label for="complemento">Complemento:</label>
+        <input type="text" id="complemento" name="complemento" value="{{ centro.complemento }}" maxlength="50"><br>
+
+        <!-- CEP -->
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" name="cep" value="{{ centro.cep }}" maxlength="9" required><br>
+
+        <!-- Telefone -->
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" value="{{ centro.telefone }}" maxlength="20" required><br>
+
+        <!-- Tipos de Materiais -->
+        <label for="tipos">Tipos de Materiais:</label><br>
+        <input type="checkbox" name="tipos" value="metal" {% if 'metal' in centro.tipos %}checked{% endif %}> Metal<br>
+        <input type="checkbox" name="tipos" value="papel" {% if 'papel' in centro.tipos %}checked{% endif %}> Papel<br>
+        <input type="checkbox" name="tipos" value="plastico" {% if 'plastico' in centro.tipos %}checked{% endif %}> Plástico<br>
+        <input type="checkbox" name="tipos" value="organico" {% if 'organico' in centro.tipos %}checked{% endif %}> Orgânico<br>
+        <input type="checkbox" name="tipos" value="perigoso" {% if 'perigoso' in centro.tipos %}checked{% endif %}> Perigoso<br>
+        <input type="checkbox" name="tipos" value="vidro" {% if 'vidro' in centro.tipos %}checked{% endif %}> Vidro<br>
+
+        <!-- Horário de Abertura -->
+        <label for="horario_abertura">Horário de Abertura:</label>
+        <input type="time" id="horario_abertura" name="horario_abertura" value="{{ centro.horario_abertura }}"><br>
+
+        <!-- Horário de Fechamento -->
+        <label for="horario_fechamento">Horário de Fechamento:</label>
+        <input type="time" id="horario_fechamento" name="horario_fechamento" value="{{ centro.horario_fechamento }}"><br>
+
+        <!-- Botão de Submissão -->
+        <button type="submit">Salvar Alterações</button>
+    </form>
+{% endblock %}

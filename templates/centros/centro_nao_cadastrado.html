@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centro Não Encontrado</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Centro Não Encontrado{% endblock %}
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'centros.css' %}">
+{% endblock css %}
+
+{% block content %}
     <h2>Centro Não Encontrado</h2>
     <p>O centro de coleta solicitado não foi encontrado ou não pertence a você.</p>
     <a href="{% url 'centros:lista_centros' %}">Voltar para a lista de centros</a>
-</body>
-</html>
+{% endblock %}
+   
+    

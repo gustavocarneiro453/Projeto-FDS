@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remover Centro de Coleta</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Remover Centro de Coleta{% endblock %}
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'centros.css' %}">
+{% endblock css %}
+
+{% block content %}
     <h2>Remover Centro de Coleta</h2>
     <p>Você tem certeza que deseja remover o centro "{{ centro.nome }}"?</p>
 
@@ -14,5 +15,4 @@
         <button type="submit">Confirmar Remoção</button>
         <a href="centros:lista_centros">Cancelar</a>
     </form>
-</body>
-</html>
+{% endblock %}
