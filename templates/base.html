@@ -4,17 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoTrack - {% block title %}{% endblock %}</title>
-    <!-- Bootstrap CSS via CDN -->
-    <link
-      href="https://stackpath .bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-      crossorigin="anonymous"
-    >
+
     <!-- CSS Personalizado -->
     {% load static %}
     {% block css %}
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+      <link rel="stylesheet" href="{% static 'centros.css' %}">
     {% endblock css %}
 </head>
 <body>
