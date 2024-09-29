@@ -23,17 +23,24 @@ def user_list_view(request):
     Apenas administradores podem acessar.
     """
     users = User.objects.all()
-    return render(request, 'users/user_list.html', {'users': users})
+    return render(request, 'users/listar_user.html', {'users': users})
 
 @login_required
-@user_passes_test(is_admin)
 def user_detail_view(request, id):
     """
     View para detalhar um usuário específico.
     Apenas administradores podem acessar.
     """
-    user = get_object_or_404(User, id=id)
-    return render(request, 'users/user_detail.html', {'user_detail': user})
+    # Obtém o usuário específico pelo ID, ou retorna 404 se não existir
+    user_detail = get_object_or_404(User, id=id)
+
+    # Contexto a ser passado para o template
+    context = {
+        'user': request.user,  # O usuário que está autenticado
+        'user_detail': user_detail  # O usuário que está sendo detalhado
+    }
+    print(f"User: {request.user}, ID: {id}")
+    return render(request, 'users/detail_user.html', context)
 
 @login_required
 @user_passes_test(is_admin)
@@ -56,7 +63,7 @@ def register_view(request):
         email = request.POST.get('email')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
-        username = request.POST.get('username')
+        nome = request.POST.get('nome')
         errors = {}
 
         # Verificação de campos obrigatórios
@@ -68,8 +75,8 @@ def register_view(request):
             if not password1:
                 errors['password1'] = "O campo Senha é obrigatório."
         else:
-            if not username:
-                errors['username'] = "O campo Nome de Usuário é obrigatório."
+            if not nome:
+                errors['nome'] = "O campo Nome de Usuário é obrigatório."
             if not email:
                 errors['email'] = "O campo Email é obrigatório."
             if not password1:
@@ -89,7 +96,7 @@ def register_view(request):
             context = {
                 'errors': errors,
                 'nome_empresa_value': nome_empresa if user_type == 'company' else '',
-                'username_value': username if user_type != 'company' else '',
+                'nome_value': nome if user_type != 'company' else '',
                 'email_value': email,
                 'form_action': request.path,
                 'csrf_token': request.COOKIES.get('csrftoken'),
@@ -101,7 +108,7 @@ def register_view(request):
             email=email,
             is_company=True if user_type == 'company' else False,
             nome_empresa=nome_empresa if user_type == 'company' else None,
-            username=username if user_type != 'company' else None,
+            nome=nome if user_type != 'company' else None,
         )
         user.set_password(password1)
         user.save()
@@ -139,17 +146,13 @@ class CustomLoginView(LoginView):
 
 @login_required
 def usuario_dashboard_view(request):
-    if request.user.is_authenticated:
-        saudacao = f"Olá, {request.user.nome}!"
-    else:
-        saudacao = "Olá, visitante!"
     """
     Dashboard para o usuário comum.
     Apenas usuários autenticados podem acessar.
     """
     context = {
         'user': request.user,
-        'saudacao': saudacao # Passa o usuário autenticado para o template
+        'user_id': request.user.id,
     }
     return render(request, 'users/dashboard_user.html', context)
 
@@ -159,12 +162,10 @@ def empresa_dashboard_view(request):
     Dashboard para empresas.
     Apenas usuários autenticados podem acessar.
     """
-    if request.user.is_authenticated:
-        saudacao = f"Olá, {request.user.nome_empresa}!"
 
     context = {
         'user': request.user,
-        'saudacao': saudacao  # Passa o usuário autenticado para o template
+        'user_id': request.user.id,
     }
     return render(request, 'users/dashboard_empresa.html', context)
 
