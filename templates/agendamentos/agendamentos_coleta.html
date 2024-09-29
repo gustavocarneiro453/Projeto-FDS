@@ -10,7 +10,12 @@
 <body>
     <div class="container">
         <header>
-            <a href="{% url 'user:usuario_dashboard' %}" class="back-btn">&larr;</a>
+            {% if user.is_company %}
+                <a href="{% url 'user:empresa_dashboard' %}" class="back-btn">&larr;</a>
+            {% else %}
+                <a href="{% url 'user:usuario_dashboard' %}" class="back-btn">&larr;</a>
+            {% endif %}
+            
             <img src="{% static 'logo.png' %}" alt="Ecotrack" class="logo">
         </header>
         

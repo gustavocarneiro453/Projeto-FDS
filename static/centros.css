@@ -1,7 +1,7 @@
 /* Estilos Gerais */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9;
+    background-color: #E4E2DD;
     margin: 0;
     padding: 0;
 }
@@ -223,7 +223,7 @@ small {
     display: flex;
     justify-content: space-between; /* Empurra os itens para os cantos */
     align-items: center; /* Centraliza verticalmente os itens */
-    background-color: #e4e4e4; /* Cor de fundo opcional */
+    background-color: #e0ddd5; /* Cor de fundo opcional */
     padding: 10px 20px; /* Espaçamento opcional */
 }
 .nav-link {

@@ -14,7 +14,7 @@
 
     <nav>
         <ul>
-            <li><a href="#">Agendamentos</a></li>
+            <li><a href="{% url 'agendamentos:agendamentos_coleta'%}">Agendamentos</a></li>
             <li><a href="#">Rastrear</a></li>
             <li><a href="{% url 'centros:lista_centros'%}">Localizações</a></li>
             <li><a href="#">Sobre</a></li>
@@ -28,7 +28,5 @@
         <p>O EcoTrack ajuda você a gerenciar seus resíduos recicláveis de forma eficiente, contribuindo para um futuro mais sustentável.</p>
     </div>
 
-    <footer>
-        <p>&copy; 2024 EcoTrack. Todos os direitos reservados.</p>
-    </footer>
+
 {% endblock %}

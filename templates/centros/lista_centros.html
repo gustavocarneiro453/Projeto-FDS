@@ -8,6 +8,11 @@
 
 {% block content %}
     <h1>Centros de Coleta</h1>
+    {% if user.is_company %}
+        <a href="{% url 'user:empresa_dashboard' %}" class="back-btn">&larr;</a>
+    {% else %}
+        <a href="{% url 'user:usuario_dashboard' %}" class="back-btn">&larr;</a>
+    {% endif %}
 
     {% if centros %}
         <ul>
