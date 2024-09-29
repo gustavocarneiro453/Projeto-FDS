@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.views import LoginView
 from django.contrib import messages
-from .forms import UserCreateForm, UserCompanyCreateForm
 from .models import User
+from django.core.exceptions import ValidationError
 from django.urls import reverse
 
 def home_view(request):
@@ -11,7 +11,7 @@ def home_view(request):
 
 def is_admin(user):
     """
-    Verifica se o usuario e um administrador.
+    Verifica se o usuário é um administrador.
     """
     return user.is_staff
 
@@ -50,35 +50,79 @@ def user_delete_view(request, id):
     return render(request, 'users/user_confirm_delete.html', {'user_obj': user_obj})
 
 def register_view(request):
-    """
-    View para registrar um usuário comum ou uma empresa.
-    """
     user_type = request.GET.get('type')
-    
     if request.method == 'POST':
-        if user_type == 'company':
-            form = UserCompanyCreateForm(request.POST)
-        else:
-            form = UserCreateForm(request.POST)
+        nome_empresa = request.POST.get('nome_empresa')
+        email = request.POST.get('email')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        username = request.POST.get('username')
+        errors = {}
 
-        if form.is_valid():
-            user = form.save()
-            messages.success(request, "Registro realizado com sucesso.")
-            
-            # Redirecionar com base no tipo de usuário
-            if user_type == 'company':
-                return redirect('user:empresa_dashboard')  # Redireciona para o dashboard da empresa
-            else:
-                return redirect('user:usuario_dashboard')  # Redireciona para o dashboard do usuário comum
+        # Verificação de campos obrigatórios
+        if user_type == 'company':
+            if not nome_empresa:
+                errors['nome_empresa'] = "O campo Nome da Empresa é obrigatório."
+            if not email:
+                errors['email'] = "O campo Email é obrigatório."
+            if not password1:
+                errors['password1'] = "O campo Senha é obrigatório."
+        else:
+            if not username:
+                errors['username'] = "O campo Nome de Usuário é obrigatório."
+            if not email:
+                errors['email'] = "O campo Email é obrigatório."
+            if not password1:
+                errors['password1'] = "O campo Senha é obrigatório."
+
+        # Verificação se o email já está em uso
+        if email and User.objects.filter(email=email).exists():
+            errors['email'] = "Este e-mail já está em uso."
+
+        # Verificação de senhas coincidentes
+        if password1 and password2 and password1 != password2:
+            errors['password'] = "As senhas não coincidem."
+
+        # Se houver erros, renderizar novamente o template com as mensagens
+        if errors:
+            template_name = 'users/criar_empresa.html' if user_type == 'company' else 'users/criar_user.html'
+            context = {
+                'errors': errors,
+                'nome_empresa_value': nome_empresa if user_type == 'company' else '',
+                'username_value': username if user_type != 'company' else '',
+                'email_value': email,
+                'form_action': request.path,
+                'csrf_token': request.COOKIES.get('csrftoken'),
+            }
+            return render(request, template_name, context)
+
+        # Criar o usuário
+        user = User(
+            email=email,
+            is_company=True if user_type == 'company' else False,
+            nome_empresa=nome_empresa if user_type == 'company' else None,
+            username=username if user_type != 'company' else None,
+        )
+        user.set_password(password1)
+        user.save()
+
+        messages.success(request, "Registro realizado com sucesso.")
+
+        # Redirecionar com base no tipo de usuário
+        if user_type == 'company':
+            return redirect('user:empresa_dashboard')  # Redireciona para o dashboard da empresa
+        else:
+            return redirect('user:usuario_dashboard')  # Redireciona para o dashboard do usuário comum
+
+    # Renderiza o formulário de registro
     else:
-        if user_type == 'company':
-            form = UserCompanyCreateForm()
-        else:
-            form = UserCreateForm()
-
-    template_name = 'users/criar_empresa.html' if user_type == 'company' else 'users/criar_user.html'
-    return render(request, template_name, {'form': form, 'title': 'Registrar como Empresa' if user_type == 'company' else 'Registrar como Usuário Comum'})
-
+        template_name = 'users/criar_empresa.html' if user_type == 'company' else 'users/criar_user.html'
+        context = {
+            'form_action': request.path,
+            'csrf_token': request.COOKIES.get('csrftoken'),
+            'title': 'Registrar como Empresa' if user_type == 'company' else 'Registrar como Usuário Comum',
+        }
+        return render(request, template_name, context)
 
 class CustomLoginView(LoginView):
     template_name = 'users/login.html'

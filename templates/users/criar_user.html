@@ -17,6 +17,14 @@
         <h2>Registrar Usuário Comum</h2>
         <form method="post" action="{{ form_action }}">
             <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+            {% if errors %}
+                <ul class="error-list">
+                {% for field, error in errors.items %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+
             <!-- Campos do formulário manualmente -->
             <div class="form-group">
                 <label for="username">Nome de Usuário:</label>
