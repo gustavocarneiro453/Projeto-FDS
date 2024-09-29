@@ -63,7 +63,10 @@ def register_view(request):
         email = request.POST.get('email')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
+
         nome = request.POST.get('nome')
+        endereco = request.POST.get('endereco')
+        cep = request.POST.get('cep')
         errors = {}
 
         # Verificação de campos obrigatórios
@@ -74,6 +77,10 @@ def register_view(request):
                 errors['email'] = "O campo Email é obrigatório."
             if not password1:
                 errors['password1'] = "O campo Senha é obrigatório."
+            if not endereco:
+                errors['endereco'] = "O campo Endereço é obrigatório."
+            if not cep:
+                errors['cep'] = "O campo CEP é obrigatório."
         else:
             if not nome:
                 errors['nome'] = "O campo Nome de Usuário é obrigatório."
@@ -98,6 +105,8 @@ def register_view(request):
                 'nome_empresa_value': nome_empresa if user_type == 'company' else '',
                 'nome_value': nome if user_type != 'company' else '',
                 'email_value': email,
+                'endereco_value': endereco,
+                'cep_value': cep,
                 'form_action': request.path,
                 'csrf_token': request.COOKIES.get('csrftoken'),
             }
@@ -108,7 +117,10 @@ def register_view(request):
             email=email,
             is_company=True if user_type == 'company' else False,
             nome_empresa=nome_empresa if user_type == 'company' else None,
+
             nome=nome if user_type != 'company' else None,
+            endereco=endereco if user_type == 'company' else None,
+            cep=cep if user_type == 'company' else None,
         )
         user.set_password(password1)
         user.save()
@@ -171,3 +183,4 @@ def empresa_dashboard_view(request):
 
 def confirmacao_view(request):
     return render(request, 'agendamentos/confirmacao.html')
+
