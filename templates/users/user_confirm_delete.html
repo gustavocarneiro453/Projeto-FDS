@@ -2,6 +2,11 @@
 
 {% extends "base.html" %}
 {% block title %}Deletar Usuário{% endblock %}
+{% if user.is_company %}
+  <a href="{% url 'user:empresa_dashboard' %}" class="back-btn">&larr;</a>
+{% else %}
+  <a href="{% url 'user:usuario_dashboard' %}" class="back-btn">&larr;</a>
+{% endif %}
 
 {% block content %}
   <h2>Deletar Usuário</h2>
