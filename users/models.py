@@ -30,9 +30,9 @@ class User(AbstractUser):
     nome_empresa = models.CharField(max_length=255, blank=True, null=True, help_text="Nome da empresa.")
     endereco_empresa = models.CharField(max_length=500, blank=True, null=True, help_text="Endereço da empresa.")
     telefone_empresa = models.CharField(max_length=20, blank=True, null=True, help_text="Telefone da empresa.")
-
+    cep = models.CharField(max_length=20, blank=True, null=True, help_text="CEP do usuário ou da empresa.")
     # Campos obrigatorios para usuarios comuns
-    nome = models.CharField(max_length=30, blank=False, help_text="Nome do usuário.")  # Nome obrigatorio
+    nome = models.CharField(max_length=30, help_text="Nome do usuário.", null=True)  # Nome obrigatorio
     sobrenome = models.CharField(max_length=30, blank=False, help_text="Sobrenome do usuário.")  # Nome obrigatorio
     telefone = models.CharField(max_length=20, blank=True, null=True, help_text="Telefone do usuário.")
 

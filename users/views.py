@@ -59,11 +59,11 @@ def user_delete_view(request, id):
 def register_view(request):
     user_type = request.GET.get('type')
     if request.method == 'POST':
+        user_type = request.POST.get('user_type')  # Obter o tipo de usuário do POST também
         nome_empresa = request.POST.get('nome_empresa')
         email = request.POST.get('email')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
-
         nome = request.POST.get('nome')
         endereco = request.POST.get('endereco')
         cep = request.POST.get('cep')
@@ -102,11 +102,12 @@ def register_view(request):
             template_name = 'users/criar_empresa.html' if user_type == 'company' else 'users/criar_user.html'
             context = {
                 'errors': errors,
+                'user_type': user_type,
                 'nome_empresa_value': nome_empresa if user_type == 'company' else '',
                 'nome_value': nome if user_type != 'company' else '',
                 'email_value': email,
-                'endereco_value': endereco,
-                'cep_value': cep,
+                'endereco_value': endereco if user_type == 'company' else '',
+                'cep_value': cep if user_type == 'company' else '',
                 'form_action': request.path,
                 'csrf_token': request.COOKIES.get('csrftoken'),
             }
@@ -115,13 +116,13 @@ def register_view(request):
         # Criar o usuário
         user = User(
             email=email,
-            is_company=True if user_type == 'company' else False,
+            is_company=(user_type == 'company'),
             nome_empresa=nome_empresa if user_type == 'company' else None,
-
             nome=nome if user_type != 'company' else None,
-            endereco=endereco if user_type == 'company' else None,
+            endereco_empresa=endereco if user_type == 'company' else None,
             cep=cep if user_type == 'company' else None,
         )
+
         user.set_password(password1)
         user.save()
 
@@ -140,6 +141,7 @@ def register_view(request):
             'form_action': request.path,
             'csrf_token': request.COOKIES.get('csrftoken'),
             'title': 'Registrar como Empresa' if user_type == 'company' else 'Registrar como Usuário Comum',
+            'user_type': user_type,
         }
         return render(request, template_name, context)
 
