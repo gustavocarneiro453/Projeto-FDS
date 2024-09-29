@@ -26,7 +26,7 @@
         
             <div class="input-group">
                 <label for="date">Data</label>
-                <input type="date" id="date" name="data" required>
+                <input type="date" id="date" name="data" placeholder="" required>
             </div>
         
             <div class="input-group">
@@ -43,9 +43,13 @@
                 <label for="empresa">Escolha a empresa</label>
                 <select id="empresa" name="empresa" required>
                     <option value="">Selecione uma empresa</option>
-                    {% for empresa in empresas %}
-                        <option value="{{ empresa.id }}">{{ empresa.nome }}</option>
-                    {% endfor %}
+                    <option value="1">Ecovia</option>
+                    <option value="2">Recycling Technologies</option>
+                    <option value="3">Wasteless</option>
+                    <option value="4">TerraCycle</option>
+                    <option value="5">Brightmark</option>
+                    <option value="6">Recipro</option>
+                    <option value="7">Greenback</option>
                 </select>
             </div>
         

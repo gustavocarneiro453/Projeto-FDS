@@ -8,6 +8,7 @@ from users.views import (
     empresa_dashboard_view,
     usuario_dashboard_view,
     register_view,
+    confirmacao_view,
 
 )
 
@@ -23,5 +24,6 @@ urlpatterns = [
     path('registrar/', register_view, name='register'),
     path('empresa/dashboard/', empresa_dashboard_view, name='empresa_dashboard'),
     path('usuario/dashboard/', usuario_dashboard_view, name='usuario_dashboard'),
+    path('confirmacao/', confirmacao_view, name='confirmacao'),
 
 ]

@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <div class="back-button">
-            <a href="#">&larr;</a>
+            <a href="{% url 'home' %}" class="back-btn">&larr; </a>        
         </div>
         <div class="login-box">
             <img src="{% static 'logo.png' %}" alt="Logo Ecotrack" class="logo">
@@ -22,10 +22,10 @@
             <form method="post" action="{% url 'user:login' %}">
                 {% csrf_token %}
                 
-                <label for="username">Nome de Usuário:</label>
+                <label for="username">Email</label>
                 <input type="text" id="username" name="username" placeholder="@gmail.com" required>
                 
-                <label for="password">Senha:</label>
+                <label for="password">Senha</label>
                 <input type="password" id="password" name="password" placeholder="**********" required>
                 
                 <button type="submit">Entrar</button>
