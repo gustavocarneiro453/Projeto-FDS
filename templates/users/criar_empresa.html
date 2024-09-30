@@ -2,6 +2,13 @@
     <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
     <input type="hidden" name="user_type" value="{{ user_type }}">
 
+    {% extends "base.html" %}
+    {% block title %}Registrar Usuário Comum{% endblock %}
+
+    {% load static %}
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'users.css' %}">
+    {% endblock css %}
     <!-- Verificação de erros -->
     {% if errors %}
         <ul class="error-list alert alert-danger">
